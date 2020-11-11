@@ -14,12 +14,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class notenRechnerui {
-	public float reachedpoints;
-	public float maxpoints;
-	public float pointsneeded;
-	public float grade;
+	public double reachedpoints, maxpoints, pointsneeded, grade, gradeRounded;
 	public JFrame frmNotenRechner;
 	private JTextField textField;
 	private JTextField txtErreichtepunktepatzhalter;
@@ -36,6 +34,7 @@ public class notenRechnerui {
 	 */
 	public void initialize() {
 		frmNotenRechner = new JFrame();
+		frmNotenRechner.setIconImage(Toolkit.getDefaultToolkit().getImage(notenRechnerui.class.getResource("/image/icontransparrent.png")));
 		frmNotenRechner.setTitle("Noten rechner");
 		frmNotenRechner.setResizable(false);
 		frmNotenRechner.setBounds(100, 100, 800, 600);
@@ -60,22 +59,26 @@ public class notenRechnerui {
 		txtpnOutputpercentage.setEditable(false);
 		txtpnOutputpercentage.setText("");
 		txtpnOutputpercentage.setFont(new Font("Dialog", Font.PLAIN, 33));
-		txtpnOutputpercentage.setBounds(343, 135, 137, 49);
+		txtpnOutputpercentage.setBounds(156, 146, 137, 49);
 		frmNotenRechner.getContentPane().add(txtpnOutputpercentage);
 		
 		JTextPane textpnDegre = new JTextPane();
 		textpnDegre.setEditable(false);
 		textpnDegre.setFont(new Font("Dialog", Font.PLAIN, 33));
 		textpnDegre.setText("4");
-		textpnDegre.setBounds(223, 254, 39, 49);
+		textpnDegre.setBounds(254, 254, 39, 49);
 		frmNotenRechner.getContentPane().add(textpnDegre);
 		
 		JTextPane textpnPointsneeded = new JTextPane();
 		textpnPointsneeded.setEditable(false);
-		textpnPointsneeded.setText(Float.toString(pointsneeded));
+		textpnPointsneeded.setText(Double.toString(pointsneeded));
 		textpnPointsneeded.setFont(new Font("Dialog", Font.PLAIN, 33));
-		textpnPointsneeded.setBounds(536, 254, 137, 49);
+		textpnPointsneeded.setBounds(463, 254, 137, 49);
 		frmNotenRechner.getContentPane().add(textpnPointsneeded);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(494, 146, 137, 49);
+		frmNotenRechner.getContentPane().add(textPane);
 		
 		JLabel lblMaxpunktzahl = new JLabel("MaxPunktzahl");
 		lblMaxpunktzahl.setBounds(142, 30, 106, 15);
@@ -86,15 +89,15 @@ public class notenRechnerui {
 		frmNotenRechner.getContentPane().add(lblErreicht);
 		
 		JLabel lblEntsprichtProzent = new JLabel("Entspricht prozent");
-		lblEntsprichtProzent.setBounds(343, 108, 137, 15);
+		lblEntsprichtProzent.setBounds(156, 119, 137, 15);
 		frmNotenRechner.getContentPane().add(lblEntsprichtProzent);
 		
 		JLabel lblNote = new JLabel("Note");
-		lblNote.setBounds(223, 227, 70, 15);
+		lblNote.setBounds(254, 227, 70, 15);
 		frmNotenRechner.getContentPane().add(lblNote);
 		
 		JLabel lblFehlendePunkte = new JLabel("Fehlende Punkte");
-		lblFehlendePunkte.setBounds(536, 227, 137, 15);
+		lblFehlendePunkte.setBounds(463, 227, 137, 15);
 		frmNotenRechner.getContentPane().add(lblFehlendePunkte);
 		
 		JLabel lblcreator = new JLabel("Ufuk Hamit Alkin");
@@ -118,12 +121,13 @@ public class notenRechnerui {
 		btnBerechne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if(event.getSource()== btnBerechne){
-					reachedpoints = Float.parseFloat(txtErreichtepunktepatzhalter.getText());
-					maxpoints = Float.parseFloat(textField.getText());
+					reachedpoints = Double.parseDouble(txtErreichtepunktepatzhalter.getText());
+					maxpoints = Double.parseDouble(textField.getText());
 					grade = (100 * reachedpoints) / maxpoints;
+					gradeRounded = Math.round(grade * 100)/100.00;
 					pointsneeded = maxpoints - reachedpoints;
-					txtpnOutputpercentage.setText(Float.toString(grade)+"%");
-					textpnPointsneeded.setText(Float.toString(pointsneeded));
+					txtpnOutputpercentage.setText(Double.toString(grade)+"%");
+					textpnPointsneeded.setText(Double.toString(pointsneeded));
 				}
 				
 				
@@ -133,5 +137,9 @@ public class notenRechnerui {
 		btnBerechne.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnBerechne.setBounds(613, 472, 137, 49);
 		frmNotenRechner.getContentPane().add(btnBerechne);
+		
+		JLabel lblEntsprichtProzentGerundet = new JLabel("Entspricht prozent gerundet");
+		lblEntsprichtProzentGerundet.setBounds(484, 119, 211, 15);
+		frmNotenRechner.getContentPane().add(lblEntsprichtProzentGerundet);
 	}
 }
