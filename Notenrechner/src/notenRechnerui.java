@@ -10,14 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
+
 public class notenRechnerui {
-	public double reachedpoints, maxpoints, pointsneeded, grade, gradeRounded;
+	public double reachedpoints, maxpoints, pointsneeded, grade, gradeRounded, gradeRoundedfiveDigits;
 	public JFrame frmNotenRechner;
 	private JTextField textField;
 	private JTextField txtErreichtepunktepatzhalter;
@@ -71,14 +70,15 @@ public class notenRechnerui {
 		
 		JTextPane textpnPointsneeded = new JTextPane();
 		textpnPointsneeded.setEditable(false);
-		textpnPointsneeded.setText(Double.toString(pointsneeded));
+		textpnPointsneeded.setText("");
 		textpnPointsneeded.setFont(new Font("Dialog", Font.PLAIN, 33));
 		textpnPointsneeded.setBounds(463, 254, 137, 49);
 		frmNotenRechner.getContentPane().add(textpnPointsneeded);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(494, 146, 137, 49);
-		frmNotenRechner.getContentPane().add(textPane);
+		JTextPane texpnPercentagenotRounded = new JTextPane();
+		texpnPercentagenotRounded.setFont(new Font("Dialog", Font.PLAIN, 25));
+		texpnPercentagenotRounded.setBounds(449, 146, 319, 49);
+		frmNotenRechner.getContentPane().add(texpnPercentagenotRounded);
 		
 		JLabel lblMaxpunktzahl = new JLabel("MaxPunktzahl");
 		lblMaxpunktzahl.setBounds(142, 30, 106, 15);
@@ -88,8 +88,8 @@ public class notenRechnerui {
 		lblErreicht.setBounds(536, 30, 159, 15);
 		frmNotenRechner.getContentPane().add(lblErreicht);
 		
-		JLabel lblEntsprichtProzent = new JLabel("Entspricht prozent");
-		lblEntsprichtProzent.setBounds(156, 119, 137, 15);
+		JLabel lblEntsprichtProzent = new JLabel("Entspricht prozent ungerundet");
+		lblEntsprichtProzent.setBounds(449, 128, 227, 15);
 		frmNotenRechner.getContentPane().add(lblEntsprichtProzent);
 		
 		JLabel lblNote = new JLabel("Note");
@@ -124,10 +124,12 @@ public class notenRechnerui {
 					reachedpoints = Double.parseDouble(txtErreichtepunktepatzhalter.getText());
 					maxpoints = Double.parseDouble(textField.getText());
 					grade = (100 * reachedpoints) / maxpoints;
-					gradeRounded = Math.round(grade * 100)/100.00;
+					gradeRounded = Math.round(grade * 100.00)/100.00;
 					pointsneeded = maxpoints - reachedpoints;
-					txtpnOutputpercentage.setText(Double.toString(grade)+"%");
+					gradeRoundedfiveDigits = grade;
+					txtpnOutputpercentage.setText(Double.toString(gradeRounded)+"%");
 					textpnPointsneeded.setText(Double.toString(pointsneeded));
+					texpnPercentagenotRounded.setText(Double.toString(gradeRoundedfiveDigits)+"%");
 				}
 				
 				
@@ -139,7 +141,7 @@ public class notenRechnerui {
 		frmNotenRechner.getContentPane().add(btnBerechne);
 		
 		JLabel lblEntsprichtProzentGerundet = new JLabel("Entspricht prozent gerundet");
-		lblEntsprichtProzentGerundet.setBounds(484, 119, 211, 15);
+		lblEntsprichtProzentGerundet.setBounds(113, 128, 211, 15);
 		frmNotenRechner.getContentPane().add(lblEntsprichtProzentGerundet);
 	}
 }
