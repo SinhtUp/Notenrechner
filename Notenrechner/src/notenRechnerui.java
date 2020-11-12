@@ -3,7 +3,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-
+import com.sun.tools.javac.resources.version;
 
 import javax.swing.JTextPane;
 import javax.swing.JButton;
@@ -16,11 +16,11 @@ import java.awt.Toolkit;
 
 
 public class notenRechnerui {
-	public double reachedpoints, maxpoints, pointsneeded, grade, gradeRounded, gradeRoundedfiveDigits;
+	public double reachedpoints, maxpoints, pointsneeded, grade, gradeRounded, gradeRoundedfiveDigits, version;
 	public JFrame frmNotenRechner;
 	private JTextField textField;
 	private JTextField txtErreichtepunktepatzhalter;
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -32,6 +32,7 @@ public class notenRechnerui {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
+		version = 0.8 ;
 		frmNotenRechner = new JFrame();
 		frmNotenRechner.setIconImage(Toolkit.getDefaultToolkit().getImage(notenRechnerui.class.getResource("/image/icontransparrent.png")));
 		frmNotenRechner.setTitle("Noten rechner");
@@ -64,7 +65,7 @@ public class notenRechnerui {
 		JTextPane textpnDegre = new JTextPane();
 		textpnDegre.setEditable(false);
 		textpnDegre.setFont(new Font("Dialog", Font.PLAIN, 33));
-		textpnDegre.setText("4");
+		textpnDegre.setText("");
 		textpnDegre.setBounds(254, 254, 39, 49);
 		frmNotenRechner.getContentPane().add(textpnDegre);
 		
@@ -106,7 +107,7 @@ public class notenRechnerui {
 		lblcreator.setBounds(12, 553, 125, 15);
 		frmNotenRechner.getContentPane().add(lblcreator);
 		
-		JLabel lblVersion = new JLabel("Version 0.1");
+		JLabel lblVersion = new JLabel("Version " + version);
 		lblVersion.setForeground(Color.GRAY);
 		lblVersion.setFont(new Font("Dialog", Font.BOLD, 9));
 		lblVersion.setBounds(142, 554, 120, 15);
@@ -130,6 +131,29 @@ public class notenRechnerui {
 					txtpnOutputpercentage.setText(Double.toString(gradeRounded)+"%");
 					textpnPointsneeded.setText(Double.toString(pointsneeded));
 					texpnPercentagenotRounded.setText(Double.toString(gradeRoundedfiveDigits)+"%");
+					
+						if (gradeRounded <= 100 && gradeRounded >= 92) {
+							textpnDegre.setText("1");
+						}
+						else if (gradeRounded <= 91 && gradeRounded >= 81) {
+							textpnDegre.setText("2");
+						}
+						else if (gradeRounded <= 80 && gradeRounded >= 67) {
+							textpnDegre.setText("3");
+						}
+						else if (gradeRounded <= 66 && gradeRounded >= 50) {
+							textpnDegre.setText("4");
+						}
+						else if (gradeRounded <= 49 && gradeRounded >= 30) {
+							textpnDegre.setText("5");
+						}
+						else if (gradeRounded <= 29 && gradeRounded >= 0) {
+							textpnDegre.setText("6");
+						}
+					
+					
+					
+					
 				}
 				
 				
@@ -137,7 +161,7 @@ public class notenRechnerui {
 		});
 	
 		btnBerechne.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnBerechne.setBounds(613, 472, 137, 49);
+		btnBerechne.setBounds(316, 365, 137, 49);
 		frmNotenRechner.getContentPane().add(btnBerechne);
 		
 		JLabel lblEntsprichtProzentGerundet = new JLabel("Entspricht prozent gerundet");
