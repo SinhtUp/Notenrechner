@@ -33,7 +33,7 @@ public class notenRechnerui {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		version = 0.9 ;
+		version = 1.0 ;
 		frmNotenRechner = new JFrame();
 		frmNotenRechner.setIconImage(Toolkit.getDefaultToolkit().getImage(notenRechnerui.class.getResource("/image/icontransparrent.png")));
 		frmNotenRechner.setTitle("Noten rechner");
@@ -56,28 +56,33 @@ public class notenRechnerui {
 		frmNotenRechner.getContentPane().add(txtErreichtepunktepatzhalter);
 		txtErreichtepunktepatzhalter.setColumns(10);
 		
-		JTextPane txtpnOutputpercentage = new JTextPane();
+		JTextField txtpnOutputpercentage = new JTextField();
+		txtpnOutputpercentage.setBackground(Color.WHITE);
+		txtpnOutputpercentage.setColumns(10);
 		txtpnOutputpercentage.setEditable(false);
 		txtpnOutputpercentage.setText("");
 		txtpnOutputpercentage.setFont(new Font("Dialog", Font.PLAIN, 33));
 		txtpnOutputpercentage.setBounds(156, 146, 137, 49);
 		frmNotenRechner.getContentPane().add(txtpnOutputpercentage);
 		
-		JTextPane textpnDegre = new JTextPane();
+		JTextField textpnDegre = new JTextField();
+		textpnDegre.setBackground(Color.WHITE);
 		textpnDegre.setEditable(false);
 		textpnDegre.setFont(new Font("Dialog", Font.PLAIN, 33));
 		textpnDegre.setText("");
 		textpnDegre.setBounds(254, 254, 39, 49);
 		frmNotenRechner.getContentPane().add(textpnDegre);
 		
-		JTextPane textpnPointsneeded = new JTextPane();
+		JTextField textpnPointsneeded = new JTextField();
+		textpnPointsneeded.setBackground(Color.WHITE);
 		textpnPointsneeded.setEditable(false);
 		textpnPointsneeded.setText("");
 		textpnPointsneeded.setFont(new Font("Dialog", Font.PLAIN, 33));
 		textpnPointsneeded.setBounds(463, 254, 137, 49);
 		frmNotenRechner.getContentPane().add(textpnPointsneeded);
 		
-		JTextPane texpnPercentagenotRounded = new JTextPane();
+		JTextField texpnPercentagenotRounded = new JTextField();
+		texpnPercentagenotRounded.setBackground(Color.WHITE);
 		texpnPercentagenotRounded.setEditable(false);
 		texpnPercentagenotRounded.setFont(new Font("Dialog", Font.PLAIN, 25));
 		texpnPercentagenotRounded.setBounds(449, 146, 319, 49);
@@ -106,13 +111,13 @@ public class notenRechnerui {
 		JLabel lblcreator = new JLabel("Ufuk Hamit Alkin");
 		lblcreator.setForeground(Color.GRAY);
 		lblcreator.setFont(new Font("Dialog", Font.BOLD, 10));
-		lblcreator.setBounds(12, 553, 125, 15);
+		lblcreator.setBounds(12, 541, 125, 15);
 		frmNotenRechner.getContentPane().add(lblcreator);
 		
 		JLabel lblVersion = new JLabel("Version " + version);
 		lblVersion.setForeground(Color.GRAY);
 		lblVersion.setFont(new Font("Dialog", Font.BOLD, 9));
-		lblVersion.setBounds(142, 554, 120, 15);
+		lblVersion.setBounds(142, 542, 120, 15);
 		frmNotenRechner.getContentPane().add(lblVersion);
 		
 		JLabel lblNewLabel = new JLabel("");
