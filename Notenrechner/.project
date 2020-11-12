@@ -21,6 +21,11 @@
 			<location>/home/hamit/git/Notenrechner/Notenrechner/src/image/Daa logoklein.png</location>
 		</link>
 		<link>
+			<name>src/image/Noten-Prozente.PNG</name>
+			<type>1</type>
+			<location>/home/hamit/git/Notenrechner/Notenrechner/src/image/Noten-Prozente.PNG</location>
+		</link>
+		<link>
 			<name>src/image/icontransparrent.png</name>
 			<type>1</type>
 			<location>/home/hamit/git/Notenrechner/Notenrechner/src/image/icontransparrent.png</location>

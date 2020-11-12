@@ -3,7 +3,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-import com.sun.tools.javac.resources.version;
+
 
 import javax.swing.JTextPane;
 import javax.swing.JButton;
@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.JTable;
 
 
 public class notenRechnerui {
@@ -32,7 +33,7 @@ public class notenRechnerui {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		version = 0.8 ;
+		version = 0.9 ;
 		frmNotenRechner = new JFrame();
 		frmNotenRechner.setIconImage(Toolkit.getDefaultToolkit().getImage(notenRechnerui.class.getResource("/image/icontransparrent.png")));
 		frmNotenRechner.setTitle("Noten rechner");
@@ -77,6 +78,7 @@ public class notenRechnerui {
 		frmNotenRechner.getContentPane().add(textpnPointsneeded);
 		
 		JTextPane texpnPercentagenotRounded = new JTextPane();
+		texpnPercentagenotRounded.setEditable(false);
 		texpnPercentagenotRounded.setFont(new Font("Dialog", Font.PLAIN, 25));
 		texpnPercentagenotRounded.setBounds(449, 146, 319, 49);
 		frmNotenRechner.getContentPane().add(texpnPercentagenotRounded);
@@ -159,7 +161,6 @@ public class notenRechnerui {
 				
 			}
 		});
-	
 		btnBerechne.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnBerechne.setBounds(316, 365, 137, 49);
 		frmNotenRechner.getContentPane().add(btnBerechne);
@@ -167,5 +168,10 @@ public class notenRechnerui {
 		JLabel lblEntsprichtProzentGerundet = new JLabel("Entspricht prozent gerundet");
 		lblEntsprichtProzentGerundet.setBounds(113, 128, 211, 15);
 		frmNotenRechner.getContentPane().add(lblEntsprichtProzentGerundet);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(notenRechnerui.class.getResource("/image/Noten-Prozente.PNG")));
+		lblNewLabel_1.setBounds(12, 420, 756, 58);
+		frmNotenRechner.getContentPane().add(lblNewLabel_1);
 	}
 }
