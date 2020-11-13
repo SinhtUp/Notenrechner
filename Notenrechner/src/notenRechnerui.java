@@ -2,10 +2,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-
-
-
-import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -18,6 +14,8 @@ import java.awt.Toolkit;
 
 public class notenRechnerui {
 	public double reachedpoints, maxpoints, pointsneeded, grade, gradeRounded, gradeRoundedfiveDigits, version;
+	public String benotung;
+	public int castGraderounded;
 	public JFrame frmNotenRechner;
 	private JTextField textField;
 	private JTextField txtErreichtepunktepatzhalter;
@@ -33,7 +31,7 @@ public class notenRechnerui {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		version = 1.0 ;
+		version = 1.1 ;
 		frmNotenRechner = new JFrame();
 		frmNotenRechner.setIconImage(Toolkit.getDefaultToolkit().getImage(notenRechnerui.class.getResource("/image/icontransparrent.png")));
 		frmNotenRechner.setTitle("Noten rechner");
@@ -57,6 +55,7 @@ public class notenRechnerui {
 		txtErreichtepunktepatzhalter.setColumns(10);
 		
 		JTextField txtpnOutputpercentage = new JTextField();
+		txtpnOutputpercentage.setHorizontalAlignment(SwingConstants.CENTER);
 		txtpnOutputpercentage.setBackground(Color.WHITE);
 		txtpnOutputpercentage.setColumns(10);
 		txtpnOutputpercentage.setEditable(false);
@@ -111,51 +110,62 @@ public class notenRechnerui {
 		JLabel lblcreator = new JLabel("Ufuk Hamit Alkin");
 		lblcreator.setForeground(Color.GRAY);
 		lblcreator.setFont(new Font("Dialog", Font.BOLD, 10));
-		lblcreator.setBounds(12, 541, 125, 15);
+		lblcreator.setBounds(643, 503, 125, 15);
 		frmNotenRechner.getContentPane().add(lblcreator);
 		
 		JLabel lblVersion = new JLabel("Version " + version);
 		lblVersion.setForeground(Color.GRAY);
 		lblVersion.setFont(new Font("Dialog", Font.BOLD, 9));
-		lblVersion.setBounds(142, 542, 120, 15);
+		lblVersion.setBounds(653, 515, 120, 15);
 		frmNotenRechner.getContentPane().add(lblVersion);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(156, 269, 106, 30);
+		frmNotenRechner.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(notenRechnerui.class.getResource("/image/Daa logoklein.png")));
 		lblNewLabel.setBounds(12, 467, 70, 89);
 		frmNotenRechner.getContentPane().add(lblNewLabel);
 	
-		JButton btnBerechne = new JButton("Berechne");
+		JButton btnBerechne = new JButton("Berechnen");
 		btnBerechne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if(event.getSource()== btnBerechne){
 					reachedpoints = Double.parseDouble(txtErreichtepunktepatzhalter.getText());
 					maxpoints = Double.parseDouble(textField.getText());
 					grade = (100 * reachedpoints) / maxpoints;
-					gradeRounded = Math.round(grade * 100.00)/100.00;
+					gradeRounded = Math.rint(grade);
 					pointsneeded = maxpoints - reachedpoints;
 					gradeRoundedfiveDigits = grade;
-					txtpnOutputpercentage.setText(Double.toString(gradeRounded)+"%");
+					castGraderounded = (int)gradeRounded;
+					txtpnOutputpercentage.setText(Integer.toString(castGraderounded)+"%");
 					textpnPointsneeded.setText(Double.toString(pointsneeded));
 					texpnPercentagenotRounded.setText(Double.toString(gradeRoundedfiveDigits)+"%");
 					
 						if (gradeRounded <= 100 && gradeRounded >= 92) {
 							textpnDegre.setText("1");
+							lblNewLabel_2.setText("Sehr Gut");
 						}
 						else if (gradeRounded <= 91 && gradeRounded >= 81) {
 							textpnDegre.setText("2");
+							lblNewLabel_2.setText("Gut");
 						}
 						else if (gradeRounded <= 80 && gradeRounded >= 67) {
 							textpnDegre.setText("3");
+							lblNewLabel_2.setText("Befriedigend");
 						}
 						else if (gradeRounded <= 66 && gradeRounded >= 50) {
 							textpnDegre.setText("4");
+							lblNewLabel_2.setText("Ausreichend");
 						}
 						else if (gradeRounded <= 49 && gradeRounded >= 30) {
 							textpnDegre.setText("5");
+							lblNewLabel_2.setText("Mangelhaft");
 						}
 						else if (gradeRounded <= 29 && gradeRounded >= 0) {
 							textpnDegre.setText("6");
+							lblNewLabel_2.setText("Ungenügend");
 						}
 					
 					
@@ -178,5 +188,8 @@ public class notenRechnerui {
 		lblNewLabel_1.setIcon(new ImageIcon(notenRechnerui.class.getResource("/image/Noten-Prozente.PNG")));
 		lblNewLabel_1.setBounds(12, 420, 756, 58);
 		frmNotenRechner.getContentPane().add(lblNewLabel_1);
+		
+		
+	
 	}
 }
